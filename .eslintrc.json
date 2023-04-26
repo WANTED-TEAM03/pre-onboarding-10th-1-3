@@ -1,0 +1,123 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": [
+    "prettier",
+    "eslint:recommended",
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "ignorePatterns": ["craco.config.ts"],
+  "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react*",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "react*/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@hooks/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@utils/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@constants/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@pages/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@components/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@assets/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@styles/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@routes/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@types/*",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react*", "react*/**"],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-alert": "off",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "jsx-a11y/label-has-associated-control": "off"
+  }
+}
