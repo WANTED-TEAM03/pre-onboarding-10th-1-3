@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import useInput from '@/hooks/useInput';
 import { authValidator } from '@/utils/authValidator';
 import styles from './styles.module.scss';
-import { Link } from 'react-router-dom';
 
 type AuthFormProps = {
   formtype: 'signin' | 'signup';
@@ -62,14 +62,12 @@ export default function AuthForm({ formtype }: AuthFormProps) {
           {isSignIn ? '로그인' : '회원가입'}
         </button>
         {isSignIn ? (
-          <>
-            <span className={styles.subContainer}>
-              <p>회원으로 가입하고 싶으신가요?</p>
-              <Link to="/signup">회원가입</Link>
-            </span>
-          </>
+          <span className={styles.subContainer}>
+            <p>회원으로 가입하고 싶으신가요?</p>
+            <Link to="/signup">회원가입</Link>
+          </span>
         ) : (
-          <></>
+          <div />
         )}
       </form>
     </div>
