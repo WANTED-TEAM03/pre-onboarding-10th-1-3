@@ -1,11 +1,11 @@
-import React from 'react';
 import { Navigate, useOutletContext } from 'react-router-dom';
+import { ROUTE_PATHS } from '@/constants/config';
 
 export default function TodoPage() {
-  const authState = useOutletContext();
+  const isLoggedIn = useOutletContext();
 
-  if (!authState) {
-    return <Navigate to="/signin" />;
+  if (!isLoggedIn) {
+    return <Navigate to={ROUTE_PATHS.signIn} />;
   }
   return <div>투두페이지</div>;
 }
