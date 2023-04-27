@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/constants/config';
 import useInput from '@/hooks/useInput';
-import { SignInAPI } from '@/services/auth';
+import { SignInAPI, SignUpAPI } from '@/services/auth';
 import { AuthFormType } from '@/types/authForm';
 import { authValidator } from '@/utils/authValidator';
 import styles from './styles.module.scss';
@@ -44,7 +44,11 @@ export default function AuthForm({ formtype }: AuthFormProps) {
         .catch(err => {
           localStorage.setItem('access_token', '');
         });
-    } // TODO: signUp 처리 필요합니다!
+    } else {
+      await SignUpAPI(authForm)
+        .then(() => navigate(ROUTE_PATHS.signIn))
+        .catch(err => console.log(err));
+    }
   };
 
   return (

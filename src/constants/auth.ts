@@ -1,5 +1,5 @@
 export const VALIDATE_PATTERNS = {
-  email: /.*@.*/g,
+  email: /.*@.*/,
   password: /^.{8,}$/,
 };
 
