@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate, useOutletContext } from 'react-router-dom';
 
 export default function SignUpPage() {
