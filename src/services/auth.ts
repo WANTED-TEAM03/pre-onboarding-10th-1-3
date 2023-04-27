@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 import { API_URLS } from '@/constants/config';
-import { AuthForm } from '@/types/authForm';
+import { AuthFormType } from '@/types/authForm';
 import apiClient from './apiClient';
 
-export const SignInAPI = async (form: AuthForm) => {
+export const SignInAPI = async (form: AuthFormType) => {
   try {
     const response = await apiClient.post(API_URLS.signIn, form);
     return response;
