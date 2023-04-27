@@ -37,18 +37,11 @@ export default function AuthForm({ formtype }: AuthFormProps) {
     };
 
     if (isSignIn) {
-      await SignInAPI(authForm)
-        .then(response => {
-          localStorage.setItem('access_token', response.data.access_token);
-          navigate(ROUTE_PATHS.todo);
-        })
-        .catch(err => {
-          localStorage.setItem('access_token', '');
-        });
+      const response = await SignInAPI(authForm);
+      if (response) navigate(ROUTE_PATHS.todo);
     } else {
-      await SignUpAPI(authForm)
-        .then(() => navigate(ROUTE_PATHS.signIn))
-        .catch(err => console.log(err));
+      const response = await SignUpAPI(authForm);
+      if (response) navigate(ROUTE_PATHS.signIn);
     }
   };
 

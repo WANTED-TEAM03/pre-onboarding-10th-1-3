@@ -6,6 +6,7 @@ import apiClient from './apiClient';
 export const SignInAPI = async (form: AuthFormType) => {
   try {
     const response = await apiClient.post(API_URLS.signIn, form);
+    localStorage.setItem('access_token', response.data.access_token);
     return response;
   } catch (e) {
     const err = e as AxiosError<any>;
@@ -14,7 +15,6 @@ export const SignInAPI = async (form: AuthFormType) => {
     } else {
       alert(err.response?.data.message);
     }
-    return Promise.reject(err);
   }
 };
 
@@ -29,6 +29,5 @@ export const SignUpAPI = async (form: AuthFormType) => {
     } else {
       alert(err.response?.data.message);
     }
-    return Promise.reject(err);
   }
 };
