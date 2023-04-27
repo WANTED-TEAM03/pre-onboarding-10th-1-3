@@ -1,6 +1,9 @@
-import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ROUTE_PATHS } from '@/constants/config';
 import useInput from '@/hooks/useInput';
+import { SignInAPI } from '@/services/auth';
+import { AuthFormType } from '@/types/authForm';
 import { authValidator } from '@/utils/authValidator';
 import styles from './styles.module.scss';
 
@@ -9,6 +12,7 @@ type AuthFormProps = {
 };
 
 export default function AuthForm({ formtype }: AuthFormProps) {
+  const navigate = useNavigate();
   const isSignIn = formtype === 'signin';
   const [emailInput, emailValidationResult] = useInput({
     initValue: '',
@@ -24,6 +28,24 @@ export default function AuthForm({ formtype }: AuthFormProps) {
       ![emailValidationResult.isValid, passwordValidatioResult.isValid].every(isValid => isValid),
     [emailValidationResult.isValid, passwordValidatioResult.isValid],
   );
+
+  const handleSubmit = async () => {
+    const authForm: AuthFormType = {
+      email: emailInput.value,
+      password: passwordInput.value,
+    };
+
+    if (isSignIn) {
+      await SignInAPI(authForm)
+        .then(response => {
+          localStorage.setItem('access_token', response.data.access_token);
+          navigate(ROUTE_PATHS.todo);
+        })
+        .catch(err => {
+          localStorage.setItem('access_token', '');
+        });
+    } // TODO: signUp 처리 필요합니다!
+  };
 
   return (
     <div className={styles.pageWrapper}>
@@ -58,6 +80,7 @@ export default function AuthForm({ formtype }: AuthFormProps) {
           type="button"
           data-testid={isSignIn ? 'signin-button' : 'signup-button'}
           disabled={isDisabled}
+          onClick={handleSubmit}
         >
           {isSignIn ? '로그인' : '회원가입'}
         </button>
@@ -67,7 +90,10 @@ export default function AuthForm({ formtype }: AuthFormProps) {
             <Link to="/signup">회원가입</Link>
           </span>
         ) : (
-          <div />
+          <span className={styles.subContainer}>
+            <p>이미 가입하신 회원이신가요?</p>
+            <Link to="/signin">로그인</Link>
+          </span>
         )}
       </form>
     </div>

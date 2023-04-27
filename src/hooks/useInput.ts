@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 type Validator = {
   isValid: boolean;
@@ -26,9 +26,7 @@ const useInput = ({ initValue, validator }: UseInputProps): UseInputReturn => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: InputValue } = e.target;
 
-    if (typeof validator === 'function') {
-      validationResult.current = validator(InputValue);
-    }
+    if (validator) validationResult.current = validator(InputValue);
 
     setValue(InputValue);
   };
