@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useLocalStorage } from './useLocalStorage';
 
 const useCheckAuth = (): boolean => {
   const location = useLocation();
-  const [authState, setAuthState] = useState(false);
-  const [accessToken] = useLocalStorage('access_token');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const accessToken = localStorage.getItem('access_token');
+
   useEffect(() => {
     if (accessToken) {
-      setAuthState(true);
+      setIsLoggedIn(true);
     } else {
-      setAuthState(false);
+      setIsLoggedIn(false);
     }
   }, [location.pathname]);
-  return authState;
+  return isLoggedIn;
 };
 
 export default useCheckAuth;

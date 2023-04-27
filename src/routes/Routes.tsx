@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { ROUTE_PATHS } from '@/constants/config';
-import GlobalLayout from './_layout';
+import GlobalLayout from './_globalLayout';
 
 const SignUpPage = lazy(() => import('@/pages/SignUp'));
 const SignInPage = lazy(() => import('@/pages/SignIn'));
