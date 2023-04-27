@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/constants/config';
 import useInput from '@/hooks/useInput';
-import { SignInAPI, SignUpAPI } from '@/services/auth';
+import { signInAPI, signUpAPI } from '@/services/auth';
 import { AuthFormType } from '@/types/authForm';
 import { authValidator } from '@/utils/authValidator';
 import onKeydown from '@/utils/onKeydown';
@@ -37,10 +37,10 @@ export default function AuthForm({ formtype }: AuthFormProps) {
     };
 
     if (isSignIn) {
-      const response = await SignInAPI(authForm);
+      const response = await signInAPI(authForm);
       if (response) navigate(ROUTE_PATHS.todo);
     } else {
-      const response = await SignUpAPI(authForm);
+      const response = await signUpAPI(authForm);
       if (response) navigate(ROUTE_PATHS.signIn);
     }
   };
