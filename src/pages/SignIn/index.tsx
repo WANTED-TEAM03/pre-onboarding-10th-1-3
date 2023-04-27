@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Navigate, useOutletContext } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { SignInAPI } from '@/services/auth';
 import { AuthForm } from '@/types/authForm';
 
 export default function SignInPage() {
   const [email] = useState('');
   const [password] = useState('');
+  const [, setAccessToken] = useLocalStorage<string>('access_token');
 
   const navigate = useNavigate();
 
@@ -16,9 +18,14 @@ export default function SignInPage() {
       password,
     };
 
-    await SignInAPI(authForm).then(response => {
-      navigate('/todo');
-    });
+    await SignInAPI(authForm)
+      .then(response => {
+        setAccessToken(response.data.access_token);
+        navigate('/todo');
+      })
+      .catch(err => {
+        setAccessToken('');
+      });
   };
 
   const authState = useOutletContext();
