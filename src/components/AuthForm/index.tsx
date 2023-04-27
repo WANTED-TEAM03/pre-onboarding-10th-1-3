@@ -5,6 +5,7 @@ import useInput from '@/hooks/useInput';
 import { SignInAPI, SignUpAPI } from '@/services/auth';
 import { AuthFormType } from '@/types/authForm';
 import { authValidator } from '@/utils/authValidator';
+import onKeydown from '@/utils/onKeydown';
 import styles from './styles.module.scss';
 
 type AuthFormProps = {
@@ -51,6 +52,11 @@ export default function AuthForm({ formtype }: AuthFormProps) {
     }
   };
 
+  const handleKeyDown = () => {
+    if (isDisabled) return;
+    handleSubmit();
+  };
+
   return (
     <div className={styles.pageWrapper}>
       <h1 className={styles.title}>{isSignIn ? '로그인' : '회원가입'}</h1>
@@ -76,6 +82,7 @@ export default function AuthForm({ formtype }: AuthFormProps) {
             placeholder="비밀번호를 입력하세요."
             value={passwordInput.value}
             onChange={passwordInput.onChange}
+            onKeyDown={e => onKeydown(e, handleKeyDown)}
           />
           <p className={styles.errorMessage}>{passwordValidatioResult.message}</p>
         </div>
