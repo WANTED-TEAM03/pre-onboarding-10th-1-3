@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios';
+import { API_URLS } from '@/constants/config';
 import { AuthForm } from '@/types/authForm';
-import { API_URL } from '@/utils/config';
 import apiClient from './apiClient';
 
 export const SignInAPI = async (form: AuthForm) => {
   try {
-    const response = await apiClient.post(API_URL.signIn, form);
+    const response = await apiClient.post(API_URLS.signIn, form);
     return response;
   } catch (e) {
     const err = e as AxiosError<any>;

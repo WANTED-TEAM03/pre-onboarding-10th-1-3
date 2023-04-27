@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { Navigate, useOutletContext, useNavigate } from 'react-router-dom';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { SignInAPI } from '@/services/auth';
 import { AuthForm } from '@/types/authForm';
 
 export default function SignInPage() {
   const [email] = useState('');
   const [password] = useState('');
-  const [, setAccessToken] = useLocalStorage<string>('access_token');
 
   const navigate = useNavigate();
 
@@ -19,17 +17,17 @@ export default function SignInPage() {
 
     await SignInAPI(authForm)
       .then(response => {
-        setAccessToken(response.data.access_token);
+        localStorage.setItem('access_token', response.data.access_token);
         navigate('/todo');
       })
       .catch(err => {
-        setAccessToken('');
+        localStorage.setItem('access_token', '');
       });
   };
 
-  const authState = useOutletContext();
+  const isLoggedIn = useOutletContext();
 
-  if (authState) {
+  if (isLoggedIn) {
     return <Navigate to="/todo" />;
   }
   return (
