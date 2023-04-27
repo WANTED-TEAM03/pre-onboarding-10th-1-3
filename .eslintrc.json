@@ -119,6 +119,7 @@
     "no-alert": "off",
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "jsx-a11y/label-has-associated-control": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "consistent-return": "off"
   }
 }

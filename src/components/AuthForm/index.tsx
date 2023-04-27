@@ -2,9 +2,10 @@ import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/constants/config';
 import useInput from '@/hooks/useInput';
-import { SignInAPI, SignUpAPI } from '@/services/auth';
+import { signInAPI, signUpAPI } from '@/services/auth';
 import { AuthFormType } from '@/types/authForm';
 import { authValidator } from '@/utils/authValidator';
+import onKeydown from '@/utils/onKeydown';
 import styles from './styles.module.scss';
 
 type AuthFormProps = {
@@ -36,19 +37,17 @@ export default function AuthForm({ formtype }: AuthFormProps) {
     };
 
     if (isSignIn) {
-      await SignInAPI(authForm)
-        .then(response => {
-          localStorage.setItem('access_token', response.data.access_token);
-          navigate(ROUTE_PATHS.todo);
-        })
-        .catch(err => {
-          localStorage.setItem('access_token', '');
-        });
+      const response = await signInAPI(authForm);
+      if (response) navigate(ROUTE_PATHS.todo);
     } else {
-      await SignUpAPI(authForm)
-        .then(() => navigate(ROUTE_PATHS.signIn))
-        .catch(err => console.log(err));
+      const response = await signUpAPI(authForm);
+      if (response) navigate(ROUTE_PATHS.signIn);
     }
+  };
+
+  const handleKeyDown = () => {
+    if (isDisabled) return;
+    handleSubmit();
   };
 
   return (
@@ -76,6 +75,7 @@ export default function AuthForm({ formtype }: AuthFormProps) {
             placeholder="비밀번호를 입력하세요."
             value={passwordInput.value}
             onChange={passwordInput.onChange}
+            onKeyDown={e => onKeydown(e, handleKeyDown)}
           />
           <p className={styles.errorMessage}>{passwordValidatioResult.message}</p>
         </div>
