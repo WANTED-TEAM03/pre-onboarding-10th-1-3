@@ -17,3 +17,14 @@
     overflow-y: scroll;
   }
   
+  .loading {
+    margin: 1rem;
+    color: var(--main-color);
+  }
+
+  .emptyTodos{
+    margin: 1rem;
+    span {
+      color: var(--darkgray-color);
+    }
+  }
