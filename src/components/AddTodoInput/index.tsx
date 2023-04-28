@@ -1,12 +1,24 @@
 import styles from './styles.module.scss';
 
-export default function AddTodoInput() {
+type AddTodoInputProps = {
+  value: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+};
+
+export default function AddTodoInput({ value, handleChange, handleSubmit }: AddTodoInputProps) {
   return (
-    <div className={styles.todoInputWrapper}>
-      <input data-testid="new-todo-input" type="text" placeholder="할 일을 입력하세요." />
-      <button type="button" data-testid="new-todo-add-button">
+    <form onSubmit={handleSubmit} className={styles.todoInputWrapper}>
+      <input
+        data-testid="new-todo-input"
+        type="text"
+        value={value}
+        onChange={handleChange}
+        placeholder="할 일을 입력하세요."
+      />
+      <button data-testid="new-todo-add-button" type="submit">
         추가
       </button>
-    </div>
+    </form>
   );
 }

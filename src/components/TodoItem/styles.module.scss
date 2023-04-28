@@ -77,4 +77,9 @@
   font-family: "Pretendard";
   font-size: 1.2rem;
   color: #3d4a5c;
+
+  &.isChecked {
+    color: #a9afb3;
+    text-decoration: line-through
+  }
 }
