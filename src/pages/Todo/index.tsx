@@ -5,6 +5,7 @@ import { TodoItem } from '@/components/TodoItem';
 import { ROUTE_PATHS } from '@/constants/config';
 import useInput from '@/hooks/useInput';
 import { createTodoAPI, getTodosAPI, deleteTodoAPI, updateTodoAPI } from '@/services/todo';
+
 import styles from './styles.module.scss';
 
 export default function TodoPage() {
@@ -34,7 +35,7 @@ export default function TodoPage() {
     if (response) {
       setTodos(list => [...list, response]);
     }
-
+    
     const scrollToBottom = () => {
       listRef.current?.scrollTo({
         top: listRef.current.scrollHeight,
@@ -57,7 +58,7 @@ export default function TodoPage() {
       setIsLoading(false);
     }
   }, []);
-
+  
   const handleDeleteTodo = async (id: number) => {
     const response = await deleteTodoAPI(id);
 
@@ -74,7 +75,7 @@ export default function TodoPage() {
     <div className={styles.pageWrapper}>
       <AddTodoInput
         value={todoInput.value}
-        onChange={todoInput.onChange}
+        handleChange={todoInput.onChange}
         handleSubmit={handleSubmit}
       />
       {isLoading && <div className={styles.loading}>할일 목록을 불러오고 있습니다</div>}
