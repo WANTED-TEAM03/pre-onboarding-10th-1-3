@@ -58,10 +58,6 @@ export default function TodoPage() {
     }
   }, []);
 
-  useEffect(() => {
-    getTodosData();
-  }, []);
-
   const handleDeleteTodo = async (id: number) => {
     const response = await deleteTodoAPI(id);
 
@@ -70,9 +66,17 @@ export default function TodoPage() {
     }
   };
 
+  useEffect(() => {
+    getTodosData();
+  }, []);
+
   return (
     <div className={styles.pageWrapper}>
-      <AddTodoInput value={todoInput.value} onChange={todoInput.onChange} onSubmit={handleSubmit} />
+      <AddTodoInput
+        value={todoInput.value}
+        onChange={todoInput.onChange}
+        handleSubmit={handleSubmit}
+      />
       {isLoading && <div className={styles.loading}>할일 목록을 불러오고 있습니다</div>}
       {!isLoading && todos.length === 0 && (
         <div className={styles.emptyTodos}>

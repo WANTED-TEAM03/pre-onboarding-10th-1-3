@@ -3,12 +3,12 @@ import styles from './styles.module.scss';
 type AddTodoInputProps = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
-export default function AddTodoInput({ value, onChange, onSubmit }: AddTodoInputProps) {
+export default function AddTodoInput({ value, onChange, handleSubmit }: AddTodoInputProps) {
   return (
-    <form onSubmit={onSubmit} className={styles.todoInputWrapper}>
+    <form onSubmit={handleSubmit} className={styles.todoInputWrapper}>
       <input
         data-testid="new-todo-input"
         type="text"
