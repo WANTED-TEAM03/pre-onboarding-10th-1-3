@@ -23,7 +23,6 @@ export default function TodoPage() {
 
   const handleUpdateTodo = useCallback(async (id: number, todo: string, isCompleted: boolean) => {
     if (todo === '') return alert('내용을 입력해주세요.');
-
     const updatedTodo = await updateTodoAPI(id, todo, isCompleted);
     setTodos(prevTodos => prevTodos.map(prevTodo => (prevTodo.id === id ? updatedTodo : prevTodo)));
   }, []);

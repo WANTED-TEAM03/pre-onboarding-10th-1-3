@@ -22,10 +22,6 @@ export function TodoItem({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (editInput.value === todo) {
-      return setIsEditing(false);
-    }
-
     await handleUpdateTodo(id, editInput.value, isCompleted);
     setIsEditing(false);
   };
