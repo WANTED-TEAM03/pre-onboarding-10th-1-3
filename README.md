@@ -14,22 +14,23 @@
 
 ## 목차
 
--   [1. 화면](#-🖥️-화면)   
--   [2. 프로젝트 실행 방법](#-🕹️-프로젝트-실행-방법)   
--   [3. 과제 수행 방향](#🎯-과제-수행-방향)
-    - [Best Practice](#-Best-Practice)
-    - [수행 방향](#-수행-방향)
-    - [구현 사항](#-구현-사항)
-    - [고민했던 사항들](#-고민했던-사항들)
--   [4. 컨벤션](#-📌-컨벤션)   
-    -   [type vs interface](#-type-vs-interface)
-    -   [Commit Convention](#-Commit-Convention)
-    -   [Branch protection rule 설정](#-Branch-protection-rule-설정)
--   [5. 사용한 라이브러리](#-📚-사용한-라이브러리)   
--   [6. 프로젝트 구조](#-📂-프로젝트-구조)   
--   [7. 팀 멤버](#-👨‍👩‍👧‍👧-팀-멤버) 
--   [8. API](#-🧾-API) 
+* [🖥️ 화면](#🖥️-화면)
+* [🕹️ 프로젝트 실행 방법](#🕹️-프로젝트-실행-방법)
+* [🎯 과제 수행 방향](#🎯-과제-수행-방향)
+  + [👑 Best Practice](#👑-best-practice)
+  + [수행 방향](#수행-방향)
+  + [구현 사항](#구현-사항)
+  + [고민했던 사항들](#고민했던-사항들)
+* [📌 컨벤션](#📌-컨벤션)
+  + [type vs interface](#type-vs-interface)
+  + [Commit convention](#commit-convention)
+  + [Branch protection rule 설정](#branch-protection-rule-설정)
+* [📚 사용한 라이브러리](#📚-사용한-라이브러리)
+* [📂 프로젝트 구조](#📂-프로젝트-구조)
+* [👨‍👩‍👧‍👧 팀 멤버](#👨‍👩‍👧‍👧-팀-멤버)
+* [🧾 API](#🧾-api)
 
+---
 
 ## 🖥️ 화면
 
