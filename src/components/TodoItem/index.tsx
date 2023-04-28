@@ -36,6 +36,7 @@ export function TodoItem({
 
   const handleCancelEdit = () => {
     if (window.confirm('수정한 내용이 사라집니다. 계속하시겠습니까?')) {
+      editInput.setValue(todo);
       setIsEditing(false);
     }
   };
