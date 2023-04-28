@@ -1,20 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useInput from '@/hooks/useInput';
+import { updateTodoAPI } from '@/services/todo';
 import styles from './styles.module.scss';
 
 type TodoItemProps = {
   todoItem: TodoType;
+  onDelete: (id: number) => void;
   handleUpdateTodo: (id: number, todoItem: string, isCompleted: boolean) => Promise<void>;
 };
 
-export function TodoItem({ todoItem, handleUpdateTodo }: TodoItemProps) {
+export function TodoItem({
+  todoItem: { todo, isCompleted, id },
+  onDelete,
+  handleUpdateTodo,
+}: TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editInput] = useInput({ initValue: todoItem.todo });
+  const [isChecked, setIsChecked] = useState(isCompleted);
+  const [editInput] = useInput({ initValue: todo });
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await handleUpdateTodo(todoItem.id, editInput.value, todoItem.isCompleted);
+
+    await handleUpdateTodo(id, editInput.value, isCompleted);
     setIsEditing(false);
   };
 
@@ -28,13 +36,30 @@ export function TodoItem({ todoItem, handleUpdateTodo }: TodoItemProps) {
     }
   };
 
+  const handleUpdateCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = event.currentTarget;
+    setIsChecked(checked);
+    updateTodoAPI(id, todo, checked);
+  };
+
+  const handleDeleteButtonClick = () => {
+    if (!window.confirm('정말 삭제하시겠습니까?')) return;
+
+    onDelete(id);
+  };
+
   useEffect(() => {
     if (isEditing) inputRef.current?.focus();
   }, [isEditing]);
 
   return (
     <li className={styles.todoWrapper}>
-      <input type="checkbox" className={styles.todoCheckbox} />
+      <input
+        type="checkbox"
+        className={styles.todoCheckbox}
+        checked={isChecked}
+        onChange={handleUpdateCheckbox}
+      />
       {isEditing ? (
         <form className={styles.inputWrapper} onSubmit={handleSubmit}>
           <input
@@ -55,12 +80,12 @@ export function TodoItem({ todoItem, handleUpdateTodo }: TodoItemProps) {
         </form>
       ) : (
         <div className={styles.inputWrapper}>
-          <p className={styles.todo}>{todoItem.todo}</p>
+          <p className={`${styles.todo}${isChecked ? ` ${styles.isChecked}` : ''}`}>{todo}</p>
           <div className={styles.buttonWrapper}>
             <button data-testid="modify-button" type="button" onClick={handleEditTodo}>
               수정
             </button>
-            <button data-testid="delete-button" type="button">
+            <button type="button" data-testid="delete-button" onClick={handleDeleteButtonClick}>
               삭제
             </button>
           </div>

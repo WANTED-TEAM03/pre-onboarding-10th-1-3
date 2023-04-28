@@ -35,7 +35,7 @@ export const updateTodoAPI = async (id: number, todo: string, isCompleted: boole
 export const deleteTodoAPI = async (id: number) => {
   try {
     const response = await apiClient.delete(`${API_URLS.todos}/${id}`);
-    return response.data;
+    return response;
   } catch (e) {
     const err = e as AxiosError<any>;
     alert(err.response?.data.message);
