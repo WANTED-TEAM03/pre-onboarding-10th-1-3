@@ -5,13 +5,13 @@ import styles from './styles.module.scss';
 
 type TodoItemProps = {
   todoItem: TodoType;
-  onDelete: (id: number) => void;
+  handleDeleteTodo: (id: number) => Promise<void>;
   handleUpdateTodo: (id: number, todoItem: string, isCompleted: boolean) => Promise<void>;
 };
 
 export function TodoItem({
   todoItem: { todo, isCompleted, id },
-  onDelete,
+  handleDeleteTodo,
   handleUpdateTodo,
 }: TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
@@ -45,7 +45,7 @@ export function TodoItem({
   const handleDeleteButtonClick = () => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
 
-    onDelete(id);
+    handleDeleteTodo(id);
   };
 
   useEffect(() => {

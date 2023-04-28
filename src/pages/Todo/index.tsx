@@ -85,7 +85,7 @@ export default function TodoPage() {
             <TodoItem
               key={todo.id}
               todoItem={todo}
-              onDelete={handleDeleteTodo}
+              handleDeleteTodo={handleDeleteTodo}
               handleUpdateTodo={handleUpdateTodo}
             />
           ))}
