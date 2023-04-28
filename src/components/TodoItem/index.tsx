@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { updateTodoAPI } from '@/services/todo';
 import styles from './styles.module.scss';
 
 type TodoItemProps = {
@@ -6,10 +7,15 @@ type TodoItemProps = {
   onDelete: (id: number) => void;
 };
 
-export function TodoItem({ todoItem, onDelete }: TodoItemProps) {
-  const { todo, isCompleted, id } = todoItem;
-
+export function TodoItem({ todoItem: { todo, isCompleted, id }, onDelete }: TodoItemProps) {
   const [isUpdating] = useState(false);
+  const [isChecked, setIsChecked] = useState(isCompleted);
+
+  const handleUpdateCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = event.currentTarget;
+    setIsChecked(checked);
+    updateTodoAPI(id, todo, checked);
+  };
 
   const handleDeleteButtonClick = () => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
@@ -19,7 +25,12 @@ export function TodoItem({ todoItem, onDelete }: TodoItemProps) {
 
   return (
     <li className={styles.todoWrapper}>
-      <input type="checkbox" className={styles.todoCheckbox} checked={isCompleted} />
+      <input
+        type="checkbox"
+        className={styles.todoCheckbox}
+        checked={isChecked}
+        onChange={handleUpdateCheckbox}
+      />
       {isUpdating ? (
         <div className={styles.inputWrapper}>
           <input className={styles.updateInput} data-testid="modify-input" />
@@ -34,7 +45,7 @@ export function TodoItem({ todoItem, onDelete }: TodoItemProps) {
         </div>
       ) : (
         <div className={styles.inputWrapper}>
-          <p className={styles.todo}>{todo}</p>
+          <p className={`${styles.todo}${isChecked ? ` ${styles.isChecked}` : ''}`}>{todo}</p>
           <div className={styles.buttonWrapper}>
             <button type="button" data-testid="modify-button">
               수정
