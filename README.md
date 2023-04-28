@@ -54,6 +54,7 @@
 <br/>
 
 ## 배포 링크
+https://wanted-boram3-1.vercel.app/
 
 <br/>
 
@@ -212,6 +213,8 @@ main 브랜치와 develop 브랜치에 `branch protection rule`을 설정하여 
 - **Require approvals**
 - **Require review from Code Owners**
 - **Require conversation resolution before merging**
+
+<br/>
 
 ## 과제 수행 방향
 
