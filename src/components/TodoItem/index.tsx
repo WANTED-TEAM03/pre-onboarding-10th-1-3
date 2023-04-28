@@ -12,6 +12,22 @@ export function TodoItem({ todoItem, handleUpdateTodo }: TodoItemProps) {
   const [editInput] = useInput({ initValue: todoItem.todo });
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await handleUpdateTodo(todoItem.id, editInput.value, todoItem.isCompleted);
+    setIsEditing(false);
+  };
+
+  const handleEditTodo = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = () => {
+    if (window.confirm('수정한 내용이 사라집니다. 계속하시겠습니까?')) {
+      setIsEditing(false);
+    }
+  };
+
   useEffect(() => {
     if (isEditing) inputRef.current?.focus();
   }, [isEditing]);
@@ -20,7 +36,7 @@ export function TodoItem({ todoItem, handleUpdateTodo }: TodoItemProps) {
     <li className={styles.todoWrapper}>
       <input type="checkbox" className={styles.todoCheckbox} />
       {isEditing ? (
-        <form className={styles.inputWrapper}>
+        <form className={styles.inputWrapper} onSubmit={handleSubmit}>
           <input
             data-testid="modify-input"
             className={styles.updateInput}
@@ -32,7 +48,7 @@ export function TodoItem({ todoItem, handleUpdateTodo }: TodoItemProps) {
             <button data-testid="submit-button" type="submit">
               제출
             </button>
-            <button data-testid="cancel-button" type="button">
+            <button data-testid="cancel-button" type="button" onClick={handleCancelEdit}>
               취소
             </button>
           </div>
