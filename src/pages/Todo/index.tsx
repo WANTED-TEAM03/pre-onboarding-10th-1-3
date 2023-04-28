@@ -4,7 +4,7 @@ import AddTodoInput from '@/components/AddTodoInput';
 import { TodoItem } from '@/components/TodoItem';
 import { ROUTE_PATHS } from '@/constants/config';
 import useInput from '@/hooks/useInput';
-import { createTodoAPI, getTodosAPI } from '@/services/todo';
+import { createTodoAPI, getTodosAPI, deleteTodoAPI } from '@/services/todo';
 import styles from './styles.module.scss';
 
 export default function TodoPage() {
@@ -54,6 +54,14 @@ export default function TodoPage() {
     getTodosData();
   }, []);
 
+  const handleDeleteTodo = async (id: number) => {
+    const response = await deleteTodoAPI(id);
+
+    if (response?.status === 204) {
+      setTodos(preTodos => preTodos.filter(todo => todo.id !== id));
+    }
+  };
+
   return (
     <div className={styles.pageWrapper}>
       <AddTodoInput value={todoInput.value} onChange={todoInput.onChange} onSubmit={handleSubmit} />
@@ -66,7 +74,7 @@ export default function TodoPage() {
       {!isLoading && todos.length !== 0 && (
         <ul ref={listRef} className={styles.listWrapper}>
           {todos.map(todo => (
-            <TodoItem key={todo.id} todoItem={todo} />
+            <TodoItem key={todo.id} todoItem={todo} onDelete={handleDeleteTodo} />
           ))}
         </ul>
       )}
