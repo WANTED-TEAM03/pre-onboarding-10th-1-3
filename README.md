@@ -14,14 +14,14 @@
 
 ## 목차
 
-* [🖥️ 화면](#화면)
+* [🖥️ 동작 화면](#동작-화면)
 * [🕹️ 프로젝트 실행 방법](#프로젝트-실행-방법)
 * [🎯 과제 수행 방향](#과제-수행-방향)
   + [👑 Best Practice](#best-practice)
   + [수행 방향](#수행-방향)
   + [구현 사항](#구현-사항)
   + [고민했던 사항들](#고민했던-사항들)
-* [📌 컨벤션](#-컨벤션)
+* [📌 컨벤션](#컨벤션)
   + [type vs interface](#type-vs-interface)
   + [Commit convention](#commit-convention)
   + [Branch protection rule 설정](#branch-protection-rule-설정)
@@ -32,7 +32,7 @@
 
 ---
 
-## 🖥️ 화면
+## 동작 화면
 
 |                                                                                                                    |                                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
@@ -47,7 +47,7 @@
 
 ---
 
-## 🕹️ 프로젝트 실행 방법
+## 프로젝트 실행 방법
 
 레파지토리 클론
 
@@ -69,9 +69,9 @@ $ npm start
 
 ---
 
-## 🎯 과제 수행 방향
+## 과제 수행 방향
 
-### 👑 Best Practice
+### Best Practice
 
 best practice 선정 기준
 
@@ -149,7 +149,7 @@ best practice 선정 기준
 
 ---
 
- ## 📌 컨벤션
+## 컨벤션
 
 ### type vs interface
 
@@ -202,7 +202,7 @@ main 브랜치와 develop 브랜치에 `branch protection rule`을 설정하여 
 ---
 
 
-## 📚 사용한 라이브러리
+## 사용한 라이브러리
 
 <div align =center>
 
@@ -219,7 +219,7 @@ main 브랜치와 develop 브랜치에 `branch protection rule`을 설정하여 
 
 ---
 
-## 📂 프로젝트 구조
+## 프로젝트 구조
 
 ```
 📦src
@@ -278,7 +278,7 @@ main 브랜치와 develop 브랜치에 `branch protection rule`을 설정하여 
 
 ---
 
-## 👨‍👩‍👧‍👧 팀 멤버
+## 팀 멤버
 
 | Name    | <center>황수현</center>|<center>이준호</center> |<center>박수현</center> |<center>이상민</center> |<center>유동혁</center> |
 | ------- | --------------------------------------------- | ------------------------------------ | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | 
@@ -293,6 +293,6 @@ main 브랜치와 develop 브랜치에 `branch protection rule`을 설정하여 
 
 ---
 
-## 🧾 API
+## API
 
 [https://github.com/walking-sunset/selection-task#api](https://github.com/walking-sunset/selection-task#api)
