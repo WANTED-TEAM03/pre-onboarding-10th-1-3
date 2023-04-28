@@ -23,6 +23,7 @@ export default function TodoPage() {
 
   const handleUpdateTodo = useCallback(async (id: number, todo: string, isCompleted: boolean) => {
     if (todo === '') return alert('내용을 입력해주세요.');
+
     const updatedTodo = await updateTodoAPI(id, todo, isCompleted);
     setTodos(prevTodos => prevTodos.map(prevTodo => (prevTodo.id === id ? updatedTodo : prevTodo)));
   }, []);
@@ -35,7 +36,7 @@ export default function TodoPage() {
     if (response) {
       setTodos(list => [...list, response]);
     }
-    
+
     const scrollToBottom = () => {
       listRef.current?.scrollTo({
         top: listRef.current.scrollHeight,
@@ -58,7 +59,7 @@ export default function TodoPage() {
       setIsLoading(false);
     }
   }, []);
-  
+
   const handleDeleteTodo = async (id: number) => {
     const response = await deleteTodoAPI(id);
 
