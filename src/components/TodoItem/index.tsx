@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styles from './styles.module.scss';
 
 type TodoItemProps = {
-  item: TodoType;
+  todoItem: TodoType;
 };
 
-export function TodoItem({ item }: TodoItemProps) {
-  const { todo, isCompleted } = item;
+export function TodoItem({ todoItem }: TodoItemProps) {
+  const { todo, isCompleted } = todoItem;
   const [isUpdating] = useState(false);
   return (
     <li className={styles.todoWrapper}>

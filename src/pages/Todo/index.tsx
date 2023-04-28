@@ -45,7 +45,7 @@ export default function TodoPage() {
       {!isLoading && todos.length !== 0 && (
         <ul ref={listRef} className={styles.listWrapper}>
           {todos.map(todo => (
-            <TodoItem key={todo.id} item={todo} />
+            <TodoItem key={todo.id} todoItem={todo} />
           ))}
         </ul>
       )}
