@@ -1,0 +1,76 @@
+@import "@/styles/media.scss";
+.pageWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 1rem;
+  margin-top: 5rem;
+  @include desktop {
+    padding: 0 5rem;
+  }
+}
+.intro {
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Pretendard";
+  @include desktop {
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 5rem;
+    margin-left: 5rem;
+  }
+  & > h1 {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    color: var(--darkgray-color);
+    & > b {
+      color: var(--main-color);
+    }
+    @include tablet {
+      font-size: 4rem;
+    }
+  }
+  & > p {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+  & > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    width: 8rem;
+    height: 3rem;
+    background-color: var(--darkgray-color);
+    color: white;
+    border-radius: 5px;
+    &:hover {
+      background-color: var(--main-color);
+      opacity: 1;
+    }
+  }
+}
+.todoBackground {
+  display: none;
+  @include desktop {
+    display: block;
+    flex-shrink: 0;
+    width: 50rem;
+    height: 30rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
