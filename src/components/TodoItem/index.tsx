@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 
-export function TodoItem() {
+type TodoItemProps = {
+  todoItem: TodoType;
+};
+
+export function TodoItem({ todoItem }: TodoItemProps) {
+  const { todo, isCompleted } = todoItem;
   const [isUpdating] = useState(false);
   return (
     <li className={styles.todoWrapper}>
-      <input type="checkbox" className={styles.todoCheckbox} />
+      <input type="checkbox" className={styles.todoCheckbox} checked={isCompleted} />
       {isUpdating ? (
         <div className={styles.inputWrapper}>
           <input className={styles.updateInput} data-testid="modify-input" />
@@ -20,7 +25,7 @@ export function TodoItem() {
         </div>
       ) : (
         <div className={styles.inputWrapper}>
-          <p className={styles.todo} />
+          <p className={styles.todo}>{todo}</p>
           <div className={styles.buttonWrapper}>
             <button type="button" data-testid="modify-button">
               수정
