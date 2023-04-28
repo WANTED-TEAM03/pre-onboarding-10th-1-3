@@ -35,7 +35,7 @@ export default function TodoPage() {
     if (response) {
       setTodos(list => [...list, response]);
     }
-    
+
     const scrollToBottom = () => {
       listRef.current?.scrollTo({
         top: listRef.current.scrollHeight,
@@ -58,7 +58,7 @@ export default function TodoPage() {
       setIsLoading(false);
     }
   }, []);
-  
+
   const handleDeleteTodo = async (id: number) => {
     const response = await deleteTodoAPI(id);
 

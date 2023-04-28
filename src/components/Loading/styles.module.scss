@@ -1,0 +1,29 @@
+@keyframes spin {
+  from {
+    transform: scale(1) rotate(0deg);
+  }
+  to {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.625rem;
+  width: 100%;
+  height: calc(100vh - 77px);
+  & > h1 {
+    font-family: "NanumSquareAcB";
+    font-size: 2rem;
+    color: var(--darkgray-color);
+  }
+}
+
+.spinner {
+  width: 5rem;
+  height: 5rem;
+  animation: spin 1s infinite ease;
+}
