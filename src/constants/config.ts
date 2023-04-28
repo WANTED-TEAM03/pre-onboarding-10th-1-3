@@ -7,6 +7,7 @@ export const API_URLS = {
 };
 
 export const ROUTE_PATHS = {
+  welcome: '/',
   signIn: '/signin',
   signUp: '/signup',
   todo: '/todo',

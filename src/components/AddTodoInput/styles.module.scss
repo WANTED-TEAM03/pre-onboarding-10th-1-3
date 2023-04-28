@@ -1,0 +1,36 @@
+
+.todoInputWrapper {
+    display: flex;
+    gap: 1.5rem;
+    width: 30rem;
+    height: 3rem;
+    & > input {
+      width: 100%;
+      padding-left: 1.25rem;
+      padding-right: 1.5rem;
+      border: 2px solid #a9afb3;
+      border-radius: 8px;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--darkgray-color);
+      &:focus {
+        border-color: #4d5256;
+        background-color: var(--gray-background);
+        outline: none;
+      }
+    }
+    & > button {
+      width: 5rem;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--main-color);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  

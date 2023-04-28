@@ -1,0 +1,30 @@
+.pageWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10rem;
+    width: 100%;
+  }
+  
+  .listWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height: 60vh;
+    margin-top: 3rem;
+    gap: 1rem;
+    overflow-y: scroll;
+  }
+  
+  .loading {
+    margin: 1rem;
+    color: var(--main-color);
+  }
+
+  .emptyTodos{
+    margin: 1rem;
+    span {
+      color: var(--darkgray-color);
+    }
+  }
